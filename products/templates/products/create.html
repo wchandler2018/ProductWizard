@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+<br>
+<br>
+{%endif%}
+
+<h1 class="text-center m-5 text-uppercase">Create Your Product Wizardry</h1>
+
+<form method="POST" action="{% url 'create' %}" enctype='multipart/form-data'>
+    {% csrf_token %}
+    Title:
+    <br>
+    <input class="mb-3 form-control"type="text" name="title" />
+    <br>
+    Description:
+    <br>
+    <input class="mb-3 form-control" type="textbox" name="body">
+    <br>
+    Product URL:
+    <br>
+    <input class="mb-3 form-control"type="text" name="url" />
+    <br>
+    Product Icon:
+    <br>
+    <input class="mb-3 form-control"type="file" name="icon" />
+    <br>
+    Product Image:
+    <br>
+    <input class="mb-3 form-control"type="file" name="image" />
+    <br>
+    <input class="btn-outline-warning mb-5 p-2" type="submit" value="Create!">
+</form>
+
+{% endblock %}

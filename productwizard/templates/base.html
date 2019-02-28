@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="Willam Chandler" content="">
+    <title>Product Wizard</title>
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Condensed" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--styles-->
+    <style>
+        body{
+            background: #67baca !important;
+            font-family: 'Roboto Condensed', sans-serif !important;
+
+        }
+        img{
+            border-radius: 5px;
+        }
+        .card{
+            background: #f1f1f2;
+            box-shadow: 30px 0px 40px rgba(0,0,0,0.1),
+                        -30px 0px 40px rgba(0,0,0,0.3);
+        }
+        .navbar-brand{
+            font-size: 2.2rem !important;
+            font-family: 'PT Serif', serif;
+            color: #e7552c !important;
+            text-shadow: 30px 0px 40px rgba(0,0,0,0.1),
+                        -30px 0px 40px rgba(0,0,0,0.3);
+        }
+        .fa-hat-wizard{
+            color: #e7552c; 
+            font-size: 2.4rem !important;
+        }
+        a{
+            cursor: pointer;
+        }
+        a:hover{
+            text-decoration: none !important;
+            color: #e7552c !important;
+            transition: 0.4s ease-in-out !important;
+        }
+        h1,h2,h3,h4,h6,h6,p{
+            color: #212529 !important;
+        }
+
+
+        h1{
+            font-size: 2.5rem !important;
+        }
+        .nav-item{
+            color: #fff !important;
+            font-size: 1.3rem !important;
+            font-weight: lighter !important;
+            letter-spacing: 2px;
+            color: #e7552c !important;
+            text-shadow: 30px 0px 40px rgba(0,0,0,0.1),
+                        -30px 0px 40px rgba(0,0,0,0.3);
+        }
+        
+    </style>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+             <div class="container">
+                    <i class="fas fa-hat-wizard mr-2 fa-2x"></i><a class="navbar-brand" href="{% url 'home'%}">Product Wizard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                        <a class="nav-item nav-link ml-5" href="{% url 'create' %}"><i class="fas fa-plus-circle mr-1"></i>Create</a>
+                        <a class="nav-item nav-link ml-5" href="javascript: {document.getElementById('logout').submit()}"><i class="fas fa-sign-out-alt mr-1"></i>Log Out</a>
+                        <form id="logout" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <input type="hidden"/>
+                        </form>
+                        {% else %}
+                        <a class="nav-item nav-link ml-5" href="{% url 'login' %}"><i class="fas fa-sign-in-alt mr-1"></i>Log In</a>
+                        <a class="nav-item nav-link ml-5 " href="{% url 'signup' %}"><i class="fas fa-user-plus mr-1"></i>Register</a>
+                        {% endif %}
+                    </div>           
+                </div>
+            </div>
+    </nav>
+</header>
+<div class="container">
+
+   
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer class="text-muted">
+        <div class="container text-center">
+            <p>© Copyright William Chandler {% now "Y" %}</p> 
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
+    
